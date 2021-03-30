@@ -6,11 +6,18 @@ This is the NFT base contract for Blockchain Developer United, it has been devel
 
 ## Steps To Run and deploy the contract 
 
-After downloading this repo
+Clone the Repo
 
 ```
-cd BDUofficialNFT
+git clone https://github.com/BlockDevsUnited/BDU-Official-NFTs
 ```
+
+cd Into the directory
+```
+cd BDU-Official-NFTs
+```
+
+Install the project
 ``` 
 npm install
 ```
