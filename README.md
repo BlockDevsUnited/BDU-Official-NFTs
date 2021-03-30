@@ -1,83 +1,19 @@
 # BDU official NFT base
-Deploy an NFT project on Ethereum
 
-This Tutorial assumes you have installed nodejs and npm
+This is the NFT base contract for Blockchain Developer United, it has been developed using this tutorial: https://github.com/BlockDevsUnited/NFT-Tutorial
+
 <br>
 
-## Start Hardhat Project
+## Steps To Run and deploy the contract 
 
-Create a new directory and install hardhat
-```
-mkdir NFTofficial
-cd NFTofficial
-npm install --save-dev hardhat
-```
-
-We recommend reviewing the hardhat documentation here
-
-Next, start a hardhat project
+After downloading this repo
 
 ```
-npx hardhat
+cd BDUofficialNFT
 ```
-
-Select "Create a sample hardhat project". You can say yes to everything.
-
-Now you have a hardhat project ready to go!
-<br>
-
-## Write NFT Contract Code
-
-First, install Open Zeppelin contracts
-
+``` 
+npm install
 ```
-npm install @openzeppelin/contracts
-```
-
-You can delete Greeter.sol.
-
-In the contracts folder, create a new solidity file called myNFT.sol and add the following code
-
-```
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract NFTbase is ERC721, Ownable {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
-
-    constructor() ERC721("BlockDevsUnited", "BDU") {}
-
-    mapping(uint => string) tokenURIs;
-
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-      return tokenURIs[tokenId];
-    }
-
-    function mint(address to, uint256 tokenId) public onlyOwner {
-        _mint(to, tokenId);
-    }
-
-    function create(address player, string memory tokenURI)
-        public
-        returns (uint256)
-    {
-        _tokenIds.increment();
-
-        uint256 newItemId = _tokenIds.current();
-        _mint(player, newItemId);
-        tokenURIs[newItemId] = tokenURI;
-
-        return newItemId;
-    }
-}
-
-```
-Try customizing the solidity code with the name of your NFT.
-<br>
 
 ## Compile the contract
 
@@ -99,7 +35,7 @@ npm install @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-et
 
 ## Configuring Deployment
 
-We are going to deploy the NFT contract on the Rinkeby Testnet.
+Now to deploy the NFT contract on the Rinkeby Testnet.
 
 First, make sure you get some rinkeby testnet Ether.  You can get some here: https://faucet.rinkeby.io/
 
